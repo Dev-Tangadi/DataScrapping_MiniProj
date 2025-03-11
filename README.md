@@ -58,7 +58,7 @@ Update the crop configuration file with crop names and corresponding checkbox ID
 Modify the ChromeDriver path in the script to point to the correct location on your system.
 
 # Running the Script:
-Once everything is configured, execute the script. The tool will iterate over the previous 60 days and the current day, scrape the data, and save each day’s data into separate CSV files.
+Once everything is configured, execute the script. The tool will iterate over the previous 30 days and the current day, scrape the data, and save each day’s data into separate CSV files.
 
 # Troubleshooting and Contributions
 
