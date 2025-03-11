@@ -2,7 +2,7 @@
 
 # Project Overview
 
-This project is a web scraping tool that automates data extraction from the AgMarknet website, which provides daily crop price and arrival reports. The main objective is to gather data for specified crops over a period of time and save the information in CSV format.
+This project is a web scraping tool that automates data extraction from the AgMarknet website, which provides daily crop price and arrival reports. The main objective is to gather data for specified crops over a period of time and save the information in CSV adn JSON format.
 
 # Key Features
 
