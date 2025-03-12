@@ -12,8 +12,8 @@ The tool uses Selenium to navigate the AgMarknet website, interact with elements
 # Multi-Day Scraping:
 The script is designed to scrape data for the previous 30 days ie. the month as well as the current day's data, ensuring comprehensive historical records.
 
-# CSV Output:
-Instead of saving the data in JSON format, the script directly converts the scraped data into CSV files. Each file is named after the day of data extraction, making it easy to organize and reference.
+# CSV & JSON Output:
+The output is stored in csv when finaltestcsv.py is run and in JSON when test2finalJASON.py is run these both codes are similar but main difference is the output in which they are saved.
 
 # Dynamic Data Handling:
 The script includes functionality to convert string representations of numbers into actual numeric types (integer or float) where appropriate. This ensures the data is stored in a more usable format.
