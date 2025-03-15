@@ -110,15 +110,15 @@ for day in month_days:
                     else:
                         row_dict[header] = ""
                 # Add the day (date) to each record
-                row_dict["Date"] = day
+                # row_dict["Date"] = day
                 data.append(row_dict)
 
         # Save the data to a CSV file
         if data:
             # Determine the fieldnames; ensure "Date" is included
             fieldnames = headers.copy()
-            if "Date" not in fieldnames:
-                fieldnames.append("Date")
+            # if "Date" not in fieldnames:
+            #     fieldnames.append("Date")
             csv_filename = f"crop_data_{day}.csv"
             with open(csv_filename, "w", newline="", encoding="utf-8") as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -136,7 +136,6 @@ for day in month_days:
     # Optional: Wait to avoid being detected as a bot
     time.sleep(5)
 
-# Quit the driver after processing all days
 driver.quit()
 
 # Wait for user input before exiting (if needed)
