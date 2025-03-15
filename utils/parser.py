@@ -1,5 +1,4 @@
 import json
-
 def parse_csv_to_json(csv_data):
     # Initialize our JSON structure
     lines = [i.strip("\n") for i in csv_data[1:]]
@@ -11,7 +10,6 @@ def parse_csv_to_json(csv_data):
     for line in lines:
         parts = line.split(',')
         parts = [part.strip() for part in parts]
-        
         # Count non-empty parts
         non_empty_parts = [p for p in parts if p]
         
@@ -57,7 +55,6 @@ def parse_csv_to_json(csv_data):
             if current_state not in result[current_category]:
                 result[current_category][current_state] = {}
             result[current_category][current_state][current_city] = {}
-        
         elif len(non_empty_parts) > 1:
             # It's a data point
             if current_category and current_state and current_city:
@@ -67,7 +64,6 @@ def parse_csv_to_json(csv_data):
                 
                 # Structure as area: [unit, price]
                 result[current_category][current_state][current_city][area] = {"Amt": unit, "Price": price}
-    
     return result
 
 
@@ -77,7 +73,8 @@ def save_json(file):
 
     parsed_data = parse_csv_to_json(sample_data)
 
-    json_result = json.dumps(parsed_data, indent=4)
+    json_result = json.dumps(parsed_data, indent=2)
+    
     # If you want to save to a file:
     with open(f"{file.split(".")[0]}.json", 'w') as f:
         f.write(json_result)
