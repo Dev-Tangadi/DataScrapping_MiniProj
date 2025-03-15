@@ -7,6 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 import time
+from utils.load_crop_data import load_crop_data
+from utils.parser import save_json
 
 # Function to convert string to number if possible
 def convert_to_number(value):
@@ -19,53 +21,6 @@ def convert_to_number(value):
             return int(value)  
     except ValueError:
         return value  
-
-# Function to load crop names and checkbox IDs from the file
-def load_crop_data(filename):
-    crop_data = {}
-    try:
-        with open(filename, 'r') as file:
-            for line in file:
-                line = line.strip()  
-                if line:  
-                    parts = line.split(", ")
-                    crop_name = parts[0].split(": ")[1]
-                    crop_id = parts[1].split(": ")[1]
-                    crop_data[crop_name] = crop_id
-        return crop_data
-    except Exception as e:
-        print(f"Error loading crop data: {e}")
-        return {}
-
-# Function to extract and save crop IDs to a new file (crop_ids.txt)
-def extract_and_save_crop_ids(input_filename, output_filename):
-    crop_ids = set()
-    try:
-        with open(output_filename, 'r') as file:
-            for line in file:
-                crop_ids.add(line.strip())  
-    except FileNotFoundError:
-        pass
-
-    try:
-        with open(input_filename, 'r') as file:
-            for line in file:
-                line = line.strip()
-                if line:
-                    parts = line.split(", ")
-                    if len(parts) == 2:
-                        crop_id = parts[1].split(": ")[1]
-                        crop_ids.add(crop_id)
-    except Exception as e:
-        print(f"Error reading crop_dict.txt: {e}")
-
-    try:
-        with open(output_filename, 'w') as file:
-            for crop_id in crop_ids:
-                file.write(crop_id + "\n")
-        print(f"Updated crop IDs saved to {output_filename}")
-    except Exception as e:
-        print(f"Error saving crop IDs to {output_filename}: {e}")
 
 # Function to get the days of the current month (up to today)
 def get_current_month_days():
@@ -170,6 +125,8 @@ for day in month_days:
                 writer.writeheader()
                 writer.writerows(data)
             print(f"Data for day {day} has been saved to '{csv_filename}'.")
+            save_json(csv_filename)
+            print(f"Json saved.")
         else:
             print(f"No data available for day {day}.")
 
